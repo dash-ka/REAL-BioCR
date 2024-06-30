@@ -14,8 +14,8 @@ odontogenic keratocysts: Cysts that develop in the jawbones and are derived from
 
 ___
 ## Grounding 
-For each extracted (and defined) entity we retrieve `k` candidate concepts from the ontology index, using embedding-based search.\
-For instance, below is a list the top 3 candidate concepts retrieved for the _skin tumors_ entity.
+For each extracted (and defined) entity, we first find `k` candidate concepts using embedding-based search over the ontology index.\
+Below are the top 3 candidate concepts retrieved for the _skin tumors_ entity.
 
 ```yaml
 
@@ -36,3 +36,11 @@ candidates:
   name: Cutaneous melanoma
   definition:The presence of a melanoma of skin.
   is_a: melanoma, neoplasm of the skin
+```
+Then, we use the following prompt to ground each extracted metnion using the retieved candidate set: \
+`As an expert clinician, your task is to accurately identify the concept mentioned in the provided text using the concepts listed below. 
+Accuracy is paramount. If the text does not precisely refer to any of the concepts listed below, please return "None"; 
+otherwise, return the corresponding concept ID in the following format:
+answer: <concept ID or None>
+confidence: <one of: HIGH, LOW, MEDIUM>`
+
