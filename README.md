@@ -41,8 +41,10 @@ candidates:
   definition:The presence of a melanoma of skin.
   is_a: melanoma, neoplasm of the skin
 ```
-```text
+
 Then, we use the following prompt to ground each extracted mention using the retieved candidate set: \
+
+```text
 As an expert clinician, your task is to accurately identify the concept mentioned in the provided text using the concepts listed below. 
 Accuracy is paramount. If the text does not precisely refer to any of the concepts listed below, please return "None"; 
 otherwise, return the corresponding concept ID in the following format:
