@@ -2,21 +2,20 @@
 Concept Recognition System for Ontology-based Annotations
 
 Let's assume we want to annotate some text with concepts from the Human Phenotype Ontology (HPO), that we pre-indexed in a ChromaDB collection `hp_ontology`.
-For our running example, we use the following text:
-_A minimum diagnostic criterion is the combination of either the [skin tumours] or multiple [odontogenic keratocysts] plus a positive family history for this disorder._
+For our running example, we use the following text:\
+_A minimum diagnostic criterion is the combination of either the skin tumours or multiple odontogenic keratocysts plus a positive family history for this disorder._
 ___
 ## NER
-The NER phases uses the following prompt to extract spans representing phenotypic features:
-`From the text below, extract all mentions of the following entities in the following format: 
-phenotypes: < a semicolon-separated list of human phenotypes, including physical abnormalities, symptoms of disease and inherited disorders. It must be semicolon separated.>`
-Which produced the following list of spans:
+The NER phase detects spans in text that represent the target entities and return them along with the a short definition, as follows:
 ```yaml
-phenotypes: skin tumors;  odontogenic keratocysts
-Then, we generate a short definition for each extracted entity using the following prompt:
+skin tumors: Abnormal growths or masses that occur in the skin and can be benign or malignant
+odontogenic keratocysts: Cysts that develop in the jawbones and are derived from the remnants of dental tissue.
+```
 
-`Given a text and a semicolon-separated list of entities from that text, write a definition for each entity in the following format:\n'\
-'entity: <A single sentence definition that explains the meaning of the entity>`
-
+___
+## Grounding 
+For each extracted (and defined) entity we retrieve `k` candidate concepts from the ontology index, using embedding-based search.\
+For instance, below is a list the top 3 candidate concepts retrieved for the _skin tumors_ entity.
 
 ```yaml
 
