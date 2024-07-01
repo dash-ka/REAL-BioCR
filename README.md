@@ -1,8 +1,7 @@
 # REAL-BioCR
 Concept Recognition System for Ontology-based Annotations
 
-Let's assume we want to annotate some text with concepts from the Human Phenotype Ontology (HPO), \
-that have been pre-indexed in a ChromaDB collection `hp_ontology`.\
+Let's assume we want to annotate some text with concepts from the Human Phenotype Ontology (HPO) pre-indexed in a ChromaDB collection.\
 For our running example, we use the following text:
 
   _A minimum diagnostic criterion is the combination of either the skin tumours   
