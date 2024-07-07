@@ -1,5 +1,5 @@
 # REAL-BioCR
-Concept Recognition System for Ontology-based Annotations
+Concept Recognition System for Ontology-based Text Annotation
 
 Let's assume we want to annotate some text with concepts from the Human Phenotype Ontology (HPO) pre-indexed in a ChromaDB collection.\
 For our running example, we use the following text:
