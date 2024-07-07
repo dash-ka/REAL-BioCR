@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from typing import Iterable, List
 from chromadb import ClientAPI as API
 from chromadb.api import EmbeddingFunction
-from chromadb.utils import embedding_functions #import OllamaEmbeddingFunction, OpenAIEmbeddingFunction
+from chromadb.utils import embedding_functions 
 from chromadb import Settings
 import chromadb, os, logging , yaml, json
 from oaklib.utilities.iterator_utils import chunk
@@ -58,16 +58,10 @@ class SemanticIndex():
 
         _obj = {k: v for k, v in obj.items() if not isinstance(v, (dict, list, type)) and v}
         _obj["ID"] = _obj.get("id", "")
-        #_obj["_json"] = json.dumps(_obj)
         return _obj
 
     def _embedding_function(self, model: str = None) -> EmbeddingFunction:
-        """
-        Get the embedding function for a given model.
-
-        :param model:
-        :return:
-        """
+        """ Get the embedding function for a given model. """
         if model is None:
             raise ValueError("Model must be specified")
         
@@ -79,10 +73,9 @@ class SemanticIndex():
             )
 
         elif model.startswith("llama:"):
-            logger.info(f'Using llama model {"nomic-embed-text"}') #model.lstrip("^llama:")
+            logger.info(f'Using llama model {"nomic-embed-text"}')
             return embedding_functions.OllamaEmbeddingFunction(
                 url="http://localhost:11434/api/embeddings",
-                #model_name=model.lstrip("^llama:")
                 model_name="nomic-embed-text"
             )     
              
@@ -124,12 +117,13 @@ class SemanticIndex():
     def add_batch(self, concepts, collection, fields=None, batch_size=None, model=None, metadata=None):
 
         """
-        concepts : List[Dict]
-        collection : str
-        fields : Iterable[str]
-        batch_size : int
-        model : str 
-        metadata : dict
+        Args:
+                concepts : List[Dict]
+                collection : str
+                fields : Iterable[str]
+                batch_size : int
+                model : str 
+                metadata : dict
         """
         
         if batch_size is None:
