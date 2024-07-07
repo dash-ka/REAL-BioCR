@@ -60,16 +60,17 @@ Text:
 The final output of the system looks like follows:
 ```yaml
 
-• ID: HP:0008069
-  label: Neoplasm of the skin
-  span: skin tumors
+• span: skin tumors
   start: 75
   end: 87
-  
+  ID: HP:0008069
+  label: Neoplasm of the skin
+  confidence: HIGH
 
-• ID: HP:0010603
-  label:  Odontogenic keratocysts of the jaw
-  span: odontogenic keratocysts
+• span: odontogenic keratocysts
   start: 100
   end: 124
+  ID: HP:0010603
+  label:  Odontogenic keratocysts of the jaw
+  confidence: HIGH  
 ```
