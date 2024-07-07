@@ -25,29 +25,51 @@ Below are the top 3 candidate concepts retrieved for the _skin tumors_ entity.
 
 candidates:
 • ID: HP:0008069
-  name: Neoplasm of the skin
+  label: Neoplasm of the skin
   definition: A tumor (abnormal growth of tissue) of the skin.
   synonyms: skin tumors, tumor of the skin, dermatological tumours
   is_a: Neoplasm by anatomical site, Abnormality of the skin
 
 • ID: HP:0000951
-  name: Abnormality of the skin
+  label: Abnormality of the skin
   definition: An abnormality of the skin.
   synonyms: dermatopathy, dermopathy
   is_a: Abnormality of the integument
 
 • ID: HP:0012056,
-  name: Cutaneous melanoma
+  label: Cutaneous melanoma
   definition:The presence of a melanoma of skin.
   is_a: melanoma, neoplasm of the skin
 ```
 
-Then, we use the following prompt to ground each extracted mention using the retieved candidate set:\
+Then, we use the following prompt to ground each extracted mention using the retieved candidate set:
 
 ```text
 As an expert clinician, your task is to accurately identify the concept mentioned in the provided text using the concepts listed below. 
 Accuracy is paramount. If the text does not precisely refer to any of the concepts listed below, please return "None"; 
 otherwise, return the corresponding concept ID in the following format:
 answer: <concept ID or None>
-confidence: <one of: HIGH, LOW, MEDIUM>`
+confidence: <one of: HIGH, LOW, MEDIUM>
 
+Below are the concepts:
+{candidate concept retrieved for a mention}
+
+Text:
+{a description of a mention, including label and generated definition}
+```
+The final output of the system looks like follows:
+```yaml
+
+• ID: HP:0008069
+  label: Neoplasm of the skin
+  span: skin tumors
+  start: 75
+  end: 87
+  
+
+• ID: HP:0010603
+  label:  Odontogenic keratocysts of the jaw
+  span: odontogenic keratocysts
+  start: 100
+  end: 124
+```
