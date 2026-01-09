@@ -105,12 +105,14 @@ class SemanticIndex():
          
         logger.info(f"Inserting {len(concepts)} objects into {collection.name}")
         start = time()
-        for id, meta in tqdm(concepts.items()):
-            collection.add(
-                documents = [self.get_description(meta, fields=fields)],
-                metadatas = [self._object_metadata(meta)],#[meta],
-                ids = [id]
-                )
+        documents = [self.get_description(meta, fields) for meta in concepts.values()]
+        metadatas = [self._object_metadata(meta) for meta in concepts.values()]
+        ids = [id for id in concepts.keys()]
+        collection_obj.add(
+            documents=documents,
+            metadatas=metadatas,
+            ids=ids
+        )
         logger.info(f"Time for stream indexing: {time()-start}")
 
 
